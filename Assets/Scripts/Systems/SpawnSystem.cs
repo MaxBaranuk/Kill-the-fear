@@ -3,8 +3,8 @@ using Systems.Interfaces;
 
 namespace Systems
 {
-    public class UserSystem : BaseSystem,IUserSystem
+    public class SpawnSystem: BaseSystem,ISpawnSystem
     {
-
+        
     }
 }
