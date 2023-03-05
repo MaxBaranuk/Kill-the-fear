@@ -44,5 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5733ff18326fbc94eb57446de57c2f29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gridPrefab: {fileID: 2606526299390363452, guid: 78af7b55ca9b9e440ac39f86dc1a0a9d, type: 3}
-  _tileGrass: {fileID: 0}
+  _cellsCount: {x: 100, y: 100}
+  _cellSize: 10
+  _planes:
+  - {fileID: 7134450954352286592, guid: 19664ff0d330d0043824ad75c7695865, type: 3}
+  - {fileID: 24353404820835790, guid: 04fe1c80529d99742a8b45a51b2b5521, type: 3}
+  - {fileID: 7134450954352286592, guid: dc5a03096b2f1b84d87e4b187a33bf90, type: 3}
+  _biomesPositions:
+  - {x: 0, y: 0, z: -300}
+  - {x: -300, y: 0, z: 300}
+  - {x: 300, y: 0, z: 300}
