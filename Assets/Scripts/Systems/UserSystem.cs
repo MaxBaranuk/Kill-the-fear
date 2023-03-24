@@ -20,7 +20,7 @@ namespace Systems
         private BiomsNames _testBiomName = BiomsNames.FirstBiom;
         private int _playerHP = 100;
         private float _testTime = 1f;
-        private List<Coroutine> _attackUser=new ();
+        private Coroutine _attackUser;
 
         private void Start()
         {
@@ -35,16 +35,14 @@ namespace Systems
 
         public void AttackUser()
         {
-            _attackUser.Add(StartCoroutine(AttackUserInZone()));
+            _attackUser ??= StartCoroutine(AttackUserInZone());
         }
 
         public void StopAttackUser()
         {
             if (_attackUser == null) return;
-            foreach (var attackCoroutine in _attackUser)
-            {
-                StopCoroutine(attackCoroutine);
-            }
+            StopCoroutine(_attackUser);
+            _attackUser = null;
         }
 
         private void CrateAndSaveWorld(WorldModel worldModel)
@@ -70,7 +68,6 @@ namespace Systems
             {
                 yield return new WaitForSeconds(_testTime);
                 _playerHP -= 1;
-                Debug.LogError(_playerHP);
             }
         }
     }

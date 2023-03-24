@@ -14,6 +14,7 @@ namespace Core
             Container.Bind<IBiomSystem>().To<BiomSystem>().FromComponentOnRoot().AsSingle();
             Container.Bind<IUISystem>().To<UISystem>().FromComponentOnRoot().AsSingle();
             Container.Bind<IFearAttackSystem>().To<FearAttackSystem>().FromComponentOnRoot().AsSingle();
+            Container.Bind<IMovingSystem>().To<MovingSystem>().FromComponentOnRoot().AsSingle();
         }
     }
 }

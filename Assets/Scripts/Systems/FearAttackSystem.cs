@@ -12,6 +12,8 @@ namespace Systems
     {
         [Inject] IWorldSystem _worldSystem;
         [Inject] IUserSystem _userSystem;
+
+        private const int AttackDistance = 5;
         public void FollowOnAttackPlayer(BiomsNames biomName,Vector3 playerPosition)
         {
             foreach (var biomModel in _worldSystem.GetBioms().BiomModels.Where(biomModel => biomModel.Name == biomName))
@@ -24,10 +26,10 @@ namespace Systems
             {
                 foreach (var enemyPosition in enemyModel.EnemyPosition)
                 {
-                    if ((enemyPosition.x + 5 > playerPosition.x &&
-                        enemyPosition.x - 5 < playerPosition.x) &&
-                        (enemyPosition.z + 5 > playerPosition.z &&
-                        enemyPosition.z - 5 < playerPosition.z))
+                    if ((enemyPosition.x + AttackDistance > playerPosition.x &&
+                        enemyPosition.x - AttackDistance < playerPosition.x) &&
+                        (enemyPosition.z + AttackDistance > playerPosition.z &&
+                        enemyPosition.z - AttackDistance < playerPosition.z))
                         _userSystem.AttackUser();
                     else
                         _userSystem.StopAttackUser();
