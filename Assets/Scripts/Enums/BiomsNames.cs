@@ -4,6 +4,6 @@ namespace Enums
     {
         FirstBiom,
         SecondBiom,
-        ThirtBiom
+        ThirdBiom
     }
 }

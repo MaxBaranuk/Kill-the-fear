@@ -1,85 +1,72 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Enums;
+using Models;
 using UnityEngine;
 
 namespace WorldEditor.Scripts
 {
     public class WorldSetting : MonoBehaviour
     {
+        private WorldModel _saveData;
+        private List<GameObject> _allGameObjects;
 
-        private SaveEditorModel _saveData;
         public void Save()
         {
-            Debug.LogError("Save");
-            var allGameObjList = FindObjectsOfType<GameObject>().ToList();
-            
-            
-            List<BiomEditorModel> biomModels = new List<BiomEditorModel>();
-            List<GameObject> bioms = allGameObjList.Where(element => element.layer == 3).ToList();
-            foreach (var biom in bioms)
+            _allGameObjects = FindObjectsOfType<GameObject>().ToList();
+            _saveData = new WorldModel
             {
-                var biomPosition = biom.transform.position;
-                biomModels.Add(new BiomEditorModel
-                {
-                    name = biom.tag,
-                    positionX = biomPosition.x,
-                    positionY = biomPosition.y,
-                    positionZ = biomPosition.z,
-                });
-            }
-            
-            List<EnemyEditorModel> enemyModels = new List<EnemyEditorModel>();
-            List<GameObject> enemyes = allGameObjList.Where(element => element.layer == 6).ToList();
-            foreach (var enemy in enemyes)
-            {
-                var enemyPosition = enemy.transform.position;
-                enemyModels.Add(new EnemyEditorModel
-                {
-                    name = enemy.tag,
-                    positionX = enemyPosition.x,
-                    positionY = enemyPosition.y,
-                    positionZ = enemyPosition.z,
-                });
-            }
-
-            _saveData = new SaveEditorModel
-            {
-                bioms = biomModels,
-                enemyes = enemyModels
+                BiomModels = CreateBiomModels()
             };
             SaveIntoJson();
+            Debug.LogError("Save");
         }
 
-        public void SaveIntoJson()
+        void SaveIntoJson()
         {
             string potion = JsonUtility.ToJson(_saveData);
             System.IO.File.WriteAllText(Application.dataPath + "/SaveWorldData.json", potion);
         }
 
-        [Serializable]
-        public class BiomEditorModel
+        List<BiomModel> CreateBiomModels()
         {
-            public string name;
-            public float positionX;
-            public float positionY;
-            public float positionZ;
+            List<BiomModel> biomModels = new List<BiomModel>();
+            List<GameObject> items = _allGameObjects.Where(element => element.layer == 3).ToList();
+            var itemsNames = Enum.GetValues(typeof(BiomsNames)).Cast<BiomsNames>().ToList();
+            int index = 0;
+            foreach (var itemName in itemsNames)
+            {
+                var sortItems = items.Where(biom => biom.CompareTag(itemName.ToString())).ToList();
+                List<Vector3> itemPositions = sortItems.Select(item => item.transform.position).ToList();
+                var enemyModels = CreateEnemyModels(index);
+                biomModels.Add(new BiomModel
+                {
+                    Name = itemName,
+                    BiomsPosition = itemPositions,
+                    EnemyModels = enemyModels
+                });
+                index++;
+            }
+            return biomModels;
         }
-        
-        [Serializable]
-        public class EnemyEditorModel
+
+        List<EnemyModel> CreateEnemyModels(int enumIndex)
         {
-            public string name;
-            public float positionX;
-            public float positionY;
-            public float positionZ;
+            List<EnemyModel> enemyModels = new List<EnemyModel>();
+            List<GameObject> items = _allGameObjects.Where(element => element.layer == 6).ToList();
+
+            EnemysNames enemyName = (EnemysNames)enumIndex;
+            var sortEnemys = items.Where(enemy => enemy.CompareTag(enemyName.ToString())).ToList();
+            List<Vector3> itemPositions = sortEnemys.Select(item => item.transform.position).ToList();
+
+            enemyModels.Add(new EnemyModel
+            {
+                EnemyName = enemyName,
+                EnemyPosition = itemPositions
+            });
+            return enemyModels;
         }
-        
-        [Serializable]
-        public class SaveEditorModel
-        {
-            public List<BiomEditorModel> bioms;
-            public List<EnemyEditorModel> enemyes;
-        }
+
     }
 }

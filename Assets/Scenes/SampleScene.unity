@@ -123,6 +123,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &131427039
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 131427040}
+  m_Layer: 0
+  m_Name: BiomRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &131427040
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131427039}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,6 +415,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 180201acf0264a45bf2b4beb3cd46bd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _biomsPrefabs:
+  - {fileID: 1420061796804622521, guid: ec09f5bbf4c6d00418fc14bcdb4d2907, type: 3}
+  - {fileID: 6064982140876242684, guid: 5a4060795bafadf468dc75a0d9426afa, type: 3}
+  - {fileID: 3828443777376320777, guid: 3ebeea6f853e31c4299ac1d84c9d2005, type: 3}
+  _enemysPrefabs:
+  - {fileID: 4226272162385185592, guid: 0e8d79ed3eafc07439136760ad0427db, type: 3}
+  - {fileID: 6595237108641636209, guid: e5afb7abaa28f0740b1d6477b298904a, type: 3}
+  - {fileID: 8912098207286780415, guid: de1c751fd8633a74395210b151610252, type: 3}
+  _biomRoot: {fileID: 131427039}
+  _enemyRoot: {fileID: 1025949387}
 --- !u!114 &1016048828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,6 +499,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 370faa9805a84224a1240417e0fd518a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1025949387
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1025949388}
+  m_Layer: 0
+  m_Name: EnemyRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1025949388
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025949387}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1447580913
 GameObject:
   m_ObjectHideFlags: 0

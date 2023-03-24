@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Core;
 using Models;
 using Systems.Interfaces;
@@ -7,11 +6,11 @@ namespace Systems
 {
     public class WorldSystem: BaseSystem,IWorldSystem
     {
-        private List<BiomModel> _biomModels;
+        private WorldModel _worldModel;
 
-        public void SetBioms(List<BiomModel> bioms) => 
-            _biomModels = bioms;
-        public List<BiomModel> GetBioms() => 
-            _biomModels;
+        public void SetBioms(WorldModel worldModel) => 
+            _worldModel = worldModel;
+        public WorldModel GetBioms() => 
+            _worldModel;
     }
 }
