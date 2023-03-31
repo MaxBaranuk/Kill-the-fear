@@ -5,6 +5,6 @@ namespace Systems.Interfaces
 {
     public interface IFearAttackSystem
     {
-        public void FollowOnAttackPlayer(BiomsNames biomName, Vector3 playerPosition);
+        public void FollowOnAttackPlayer(BiomesNames biomName, Vector3 playerPosition);
     }
 }

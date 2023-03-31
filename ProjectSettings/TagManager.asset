@@ -10,6 +10,16 @@ TagManager:
   - FirstBiomEnemy
   - SecondBiomEnemy
   - ThirdBiomEnemy
+  - Homeland
+  - DarkForest
+  - Winter
+  - Biome4
+  - Biome5
+  - HomelandEnemy
+  - DarkForestEnemy
+  - WinterEnemy
+  - Biome4Enemy
+  - Biome5Enemy
   layers:
   - Default
   - TransparentFX

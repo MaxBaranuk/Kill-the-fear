@@ -2,8 +2,9 @@ namespace Systems.Interfaces
 {
     public interface ISpawnSystem
     {
-        public void SaveBiom();
-        public void SpawnBioms();
-        public void SpawnEnemys();
+        public void SaveBiomes();
+        public void SpawnBiomes();
+        public void SmoothBiomesTransitions();
+        public void SpawnEnemies();
     }
 }

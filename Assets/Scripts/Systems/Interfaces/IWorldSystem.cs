@@ -4,7 +4,7 @@ namespace Systems.Interfaces
 {
     public interface IWorldSystem
     {
-        public void SetBioms(WorldModel worldModel);
-        public WorldModel GetBioms();
+        public void SetBiomes(WorldModel worldModel);
+        public WorldModel GetBiomes();
     }
 }

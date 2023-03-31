@@ -7,40 +7,52 @@ using Zenject;
 
 namespace Systems
 {
-    public class SpawnSystem: BaseSystem,ISpawnSystem
+    public class SpawnSystem : BaseSystem, ISpawnSystem
     {
         [Inject] IWorldSystem _worldSystem;
-        
+
         [SerializeField] private List<GameObject> _biomsPrefabs;
         [SerializeField] private List<GameObject> _enemysPrefabs;
         [SerializeField] private GameObject _biomRoot;
         [SerializeField] private GameObject _enemyRoot;
 
-        List<BiomModel> _bioms;
-        public void SaveBiom() => 
-            _bioms=_worldSystem.GetBioms().BiomModels;
+        List<BiomeModel> _biomes;
 
-        public void SpawnBioms()
+        public void SaveBiomes() =>
+            _biomes = _worldSystem.GetBiomes().BiomModels;
+
+        public void SpawnBiomes()
         {
-            foreach (var biomModel in _bioms)
+            foreach (var biomeModel in _biomes)
             {
-                int biomIndex = (int)biomModel.Name;
-                foreach (var positionBiom in biomModel.BiomsPosition)
-                {
-                    Instantiate(_biomsPrefabs[biomIndex],positionBiom,Quaternion.identity,_biomRoot.transform);
-                }
+                int biomeIndex = (int)biomeModel.Name;
+
+                var biomeRoot = new GameObject(biomeModel.Name.ToString());
+                biomeRoot.transform.SetParent(_biomRoot.transform);
+
+                // biomeModel.BiomeObjPositions.Reverse();
+
+                foreach (var biomePosition in biomeModel.BiomeObjPositions)
+                    Instantiate(_biomsPrefabs[biomeIndex], biomePosition, Quaternion.identity, biomeRoot.transform);
             }
         }
-        public void SpawnEnemys()
+
+        public void SmoothBiomesTransitions()
         {
-            foreach (var biomModel in _bioms)
+
+        }
+
+        public void SpawnEnemies()
+        {
+            foreach (var biomModel in _biomes)
             {
                 foreach (var enemyModel in biomModel.EnemyModels)
                 {
                     int enemyIndex = (int)enemyModel.EnemyName;
+
                     foreach (var positionEnemy in enemyModel.EnemyPosition)
                     {
-                        Instantiate(_enemysPrefabs[enemyIndex],positionEnemy,Quaternion.identity,_enemyRoot.transform);
+                        Instantiate(_enemysPrefabs[enemyIndex], positionEnemy, Quaternion.identity, _enemyRoot.transform);
                     }
                 }
             }

@@ -6,10 +6,10 @@ using UnityEngine;
 namespace Models
 {
     [Serializable]
-    public class BiomModel
+    public class BiomeModel
     {
-        public BiomsNames Name;
-        public List<Vector3> BiomsPosition;
+        public BiomesNames Name;
+        public List<Vector3> BiomeObjPositions;
         public List<EnemyModel> EnemyModels;
     }
 }

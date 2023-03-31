@@ -14,22 +14,21 @@ namespace Systems
         [Inject] IUserSystem _userSystem;
 
         private const int AttackDistance = 5;
-        public void FollowOnAttackPlayer(BiomsNames biomName,Vector3 playerPosition)
+        public void FollowOnAttackPlayer(BiomesNames biomName,Vector3 playerPosition)
         {
-            foreach (var biomModel in _worldSystem.GetBioms().BiomModels.Where(biomModel => biomModel.Name == biomName))
-                FindPlayerInBiom(biomModel, playerPosition);
+            foreach (var biomModel in _worldSystem.GetBiomes().BiomModels.Where(biomModel => biomModel.Name == biomName))
+                FindPlayerInBiome(biomModel, playerPosition);
         }
 
-        private void FindPlayerInBiom(BiomModel biomModel,Vector3 playerPosition)
+        private void FindPlayerInBiome(BiomeModel biomModel,Vector3 playerPosition)
         {
+            float sqrDist = AttackDistance * AttackDistance;
+
             foreach (var enemyModel in biomModel.EnemyModels)
             {
                 foreach (var enemyPosition in enemyModel.EnemyPosition)
                 {
-                    if ((enemyPosition.x + AttackDistance > playerPosition.x &&
-                        enemyPosition.x - AttackDistance < playerPosition.x) &&
-                        (enemyPosition.z + AttackDistance > playerPosition.z &&
-                        enemyPosition.z - AttackDistance < playerPosition.z))
+                    if ((enemyPosition - playerPosition).sqrMagnitude < sqrDist)
                         _userSystem.AttackUser();
                     else
                         _userSystem.StopAttackUser();

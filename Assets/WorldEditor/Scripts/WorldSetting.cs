@@ -29,21 +29,21 @@ namespace WorldEditor.Scripts
             System.IO.File.WriteAllText(Application.dataPath + "/SaveWorldData.json", potion);
         }
 
-        List<BiomModel> CreateBiomModels()
+        List<BiomeModel> CreateBiomModels()
         {
-            List<BiomModel> biomModels = new List<BiomModel>();
+            List<BiomeModel> biomModels = new List<BiomeModel>();
             List<GameObject> items = _allGameObjects.Where(element => element.layer == 3).ToList();
-            var itemsNames = Enum.GetValues(typeof(BiomsNames)).Cast<BiomsNames>().ToList();
+            var itemsNames = Enum.GetValues(typeof(BiomesNames)).Cast<BiomesNames>().ToList();
             int index = 0;
             foreach (var itemName in itemsNames)
             {
                 var sortItems = items.Where(biom => biom.CompareTag(itemName.ToString())).ToList();
                 List<Vector3> itemPositions = sortItems.Select(item => item.transform.position).ToList();
                 var enemyModels = CreateEnemyModels(index);
-                biomModels.Add(new BiomModel
+                biomModels.Add(new BiomeModel
                 {
                     Name = itemName,
-                    BiomsPosition = itemPositions,
+                    BiomeObjPositions = itemPositions,
                     EnemyModels = enemyModels
                 });
                 index++;
@@ -56,7 +56,7 @@ namespace WorldEditor.Scripts
             List<EnemyModel> enemyModels = new List<EnemyModel>();
             List<GameObject> items = _allGameObjects.Where(element => element.layer == 6).ToList();
 
-            EnemysNames enemyName = (EnemysNames)enumIndex;
+            EnemiesNames enemyName = (EnemiesNames)enumIndex;
             var sortEnemys = items.Where(enemy => enemy.CompareTag(enemyName.ToString())).ToList();
             List<Vector3> itemPositions = sortEnemys.Select(item => item.transform.position).ToList();
 

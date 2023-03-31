@@ -8,9 +8,9 @@ namespace Systems
     {
         private WorldModel _worldModel;
 
-        public void SetBioms(WorldModel worldModel) => 
+        public void SetBiomes(WorldModel worldModel) => 
             _worldModel = worldModel;
-        public WorldModel GetBioms() => 
+        public WorldModel GetBiomes() => 
             _worldModel;
     }
 }

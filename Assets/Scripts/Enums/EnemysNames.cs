@@ -1,9 +1,11 @@
 namespace Enums
 {
-    public enum EnemysNames
+    public enum EnemiesNames
     {
-        FirstBiomEnemy,
-        SecondBiomEnemy,
-        ThirdBiomEnemy
+        HomelandEnemy,
+        DarkForestEnemy,
+        WinterEnemy,
+        Biome4Enemy,
+        Biome5Enemy
     }
 }

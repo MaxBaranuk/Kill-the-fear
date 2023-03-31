@@ -6,6 +6,6 @@ namespace Models
     [Serializable]
     public class WorldModel
     {
-        public List<BiomModel> BiomModels;
+        public List<BiomeModel> BiomModels;
     }
 }

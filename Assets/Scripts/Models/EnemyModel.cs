@@ -8,7 +8,7 @@ namespace Models
     [Serializable]
     public class EnemyModel
     {
-        public EnemysNames EnemyName;
+        public EnemiesNames EnemyName;
         public List<Vector3> EnemyPosition;
     }
 }

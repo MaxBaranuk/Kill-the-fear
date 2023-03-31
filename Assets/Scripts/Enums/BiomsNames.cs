@@ -1,9 +1,11 @@
 namespace Enums
 {
-    public enum BiomsNames
+    public enum BiomesNames
     {
-        FirstBiom,
-        SecondBiom,
-        ThirdBiom
+        Homeland,
+        DarkForest,
+        Winter,
+        Biome4,
+        Biome5
     }
 }

@@ -17,7 +17,7 @@ namespace Systems
         
         [SerializeField] GameObject player;
         
-        private BiomsNames _testBiomName = BiomsNames.FirstBiom;
+        private BiomesNames _testBiomName = BiomesNames.Homeland;
         private int _playerHP = 100;
         private float _testTime = 1f;
         private Coroutine _attackUser;
@@ -26,7 +26,8 @@ namespace Systems
         {
             var test= System.IO.File.ReadAllText(Application.dataPath + "/SaveWorldData.json");
             WorldModel worldModel = JsonUtility.FromJson<WorldModel>(test);
-            CrateAndSaveWorld(worldModel);
+
+            CreateAndSaveWorld(worldModel);
             StartCoroutine(FollowPlayerOnFear());
         }
 
@@ -45,12 +46,13 @@ namespace Systems
             _attackUser = null;
         }
 
-        private void CrateAndSaveWorld(WorldModel worldModel)
+        private void CreateAndSaveWorld(WorldModel worldModel)
         {
-            _worldSystem.SetBioms(worldModel);
-            _spawnSystem.SaveBiom();
-            _spawnSystem.SpawnBioms();
-            _spawnSystem.SpawnEnemys();
+            _worldSystem.SetBiomes(worldModel);
+            _spawnSystem.SaveBiomes();
+            _spawnSystem.SpawnBiomes();
+            _spawnSystem.SmoothBiomesTransitions();
+            _spawnSystem.SpawnEnemies();
         }
         
         private IEnumerator FollowPlayerOnFear()
