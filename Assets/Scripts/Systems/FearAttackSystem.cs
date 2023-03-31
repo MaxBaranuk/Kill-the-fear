@@ -12,19 +12,29 @@ namespace Systems
     {
         [Inject] IWorldSystem _worldSystem;
         [Inject] IUserSystem _userSystem;
-        public void FollowOnAttackPlayer(BiomsNames biomName,Vector3 position)
+
+        private const int AttackDistance = 5;
+        public void FollowOnAttackPlayer(BiomsNames biomName,Vector3 playerPosition)
         {
-            foreach (var biomModel in _worldSystem.GetBioms().Where(biomModel => biomModel.name == biomName))
-                FindPlayerInBiom(biomModel, position);
+            foreach (var biomModel in _worldSystem.GetBioms().BiomModels.Where(biomModel => biomModel.Name == biomName))
+                FindPlayerInBiom(biomModel, playerPosition);
         }
 
-        private void FindPlayerInBiom(BiomModel biomModel,Vector3 position)
+        private void FindPlayerInBiom(BiomModel biomModel,Vector3 playerPosition)
         {
-            if (biomModel.EnemyPosition.x + 5 < position.x || biomModel.EnemyPosition.x - 5 > position.x ||
-                biomModel.EnemyPosition.y + 5 < position.y || biomModel.EnemyPosition.y - 5 > position.y)
-                _userSystem.AttackUser();
-            else
-                _userSystem.StopAttackUser();
+            foreach (var enemyModel in biomModel.EnemyModels)
+            {
+                foreach (var enemyPosition in enemyModel.EnemyPosition)
+                {
+                    if ((enemyPosition.x + AttackDistance > playerPosition.x &&
+                        enemyPosition.x - AttackDistance < playerPosition.x) &&
+                        (enemyPosition.z + AttackDistance > playerPosition.z &&
+                        enemyPosition.z - AttackDistance < playerPosition.z))
+                        _userSystem.AttackUser();
+                    else
+                        _userSystem.StopAttackUser();
+                }
+            }
         }
     }
 }
