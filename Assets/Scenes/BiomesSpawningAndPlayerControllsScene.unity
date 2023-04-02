@@ -150,9 +150,41 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 147609667}
   m_Father: {fileID: 0}
   m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &147609666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 147609667}
+  m_Layer: 0
+  m_Name: InterbiomeRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &147609667
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147609666}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 131427040}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &346287119
 GameObject:
@@ -377,14 +409,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: -10}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 260, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &1016048824
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,8 +513,13 @@ MonoBehaviour:
   - {fileID: 8912098207286780415, guid: 3ab9b1560fa26d04ba11cbae4387318f, type: 3}
   - {fileID: 8912098207286780415, guid: bbe0a0b96f61c8144997228aa45a1ba8, type: 3}
   - {fileID: 8912098207286780415, guid: 755844e8c89d4a5428d1a582e9fc9dc4, type: 3}
-  _biomRoot: {fileID: 131427039}
+  _biomesRoot: {fileID: 131427039}
+  _interBiomeRoot: {fileID: 147609666}
   _enemyRoot: {fileID: 1025949387}
+  _cellSize: 1
+  _terrainBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 150, y: 0, z: 150}
 --- !u!114 &1016048828
 MonoBehaviour:
   m_ObjectHideFlags: 0
